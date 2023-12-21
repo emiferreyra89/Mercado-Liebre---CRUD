@@ -407,6 +407,10 @@ textarea.form-input {
   padding: 15px;
 }
 
+.form-input-file {
+  padding-top: 10px;
+}
+
 
 
 /*====== Media-Queries ======*/

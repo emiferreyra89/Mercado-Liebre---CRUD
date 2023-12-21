@@ -32,6 +32,7 @@ const productsController = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
+		const file = req.file;
 		let products = leerArchivo("productsDataBase");
 		const {name,description,price,discount,image,category} = req.body;
 		const id = uuidv4();
@@ -41,7 +42,7 @@ const productsController = {
 					description:description.trim(),
 					price:+price,
 					discount:+discount,
-					image:"default-image.png",
+					image:req.file.filename,
 					category
 				};
 		products.push(product);		
@@ -69,7 +70,7 @@ const productsController = {
 					description:description.trim(),
 					price:+price,
 					discount:+discount,
-					image: (image ? image : product.image),
+					image: (image ? image : req.file.filename),
 					category
 				}
 			};
