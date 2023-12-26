@@ -17,10 +17,26 @@
 		<div class="product-detail">
 			<div class="row">
 				<div class="col-12 col-lg-8">
-					<img src="/images/products/<%= product.image ? product.image : 'default-image.png'%>" alt="product image <%= product.name%>" class="product-detail-img">
-					<p class="product-detail-description">
+
+					<% if (typeof product.image == "string") {%>
+							<img src="/images/products/<%= product.image%>" alt="product image <%= product.name%>" class="product-detail-img">
+									
+					  <% } else {%>
+						<div class="multer-images">
+							<img src="/images/products/<%= product.image[0]%>" alt="product image <%= product.name%>" class="product-detail-img">
+							</div>
+							
+						<div class="multer-images-secundary">
+							<% for (let i=1; i<product.image.length; i++) {%>
+							<img src="/images/products/<%= product.image[i]%>" alt="product image <%= product.name%>" class="product-detail-img">
+							<% };%>
+						</div>	
+							
+					  <% }%>
+
+						<p class="product-detail-description">
 						<%= product.description%>
-					</p>
+						</p>	
 				</div>
 				<div class="col-12 col-lg-4">
 					<article class="product-detail-info">

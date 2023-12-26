@@ -4,10 +4,6 @@ const path = require('path');
 const {v4 : uuidv4} = require('uuid');
 const {leerArchivo,escribirArchivo} = require('../data/dataFunctions');
 
-
-// const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 const productsController = {
@@ -32,17 +28,22 @@ const productsController = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		const file = req.file;
+		const files = req.files;
+		console.log("Esto es FILES: ",files);
 		let products = leerArchivo("productsDataBase");
 		const {name,description,price,discount,image,category} = req.body;
 		const id = uuidv4();
+		const images = [];
+		files.forEach(element => {
+			images.push(element.filename)
+		});
 		const product =  {
 					id,
 					name:name.trim(),
 					description:description.trim(),
 					price:+price,
 					discount:+discount,
-					image:req.file.filename,
+					image: files.length > 1 ? images : ["not-image.jpg"],
 					category
 				};
 		products.push(product);		
@@ -59,6 +60,15 @@ const productsController = {
 	},
 	// Update - Method to update
 	update: (req, res) => {
+		const images = [];
+		console.log("Esto es IMAGES antes: ",images);
+		if(req.files){
+			req.files.forEach(element => {
+				images.push(element.filename)
+			});
+		}
+
+		console.log("Esto es IMAGES despues: ",images);
 		let products = leerArchivo("productsDataBase");
 		const {name,description,price,discount,image,category} = req.body;
 		const {id} = req.params;
@@ -70,12 +80,13 @@ const productsController = {
 					description:description.trim(),
 					price:+price,
 					discount:+discount,
-					image: (image ? image : req.file.filename),
+					image: images.length > 0 ? images : product.image,
 					category
 				}
 			};
 			return product;
 		})
+		console.log("Esto es product: ",productsEdit);
 		escribirArchivo(productsEdit,"productsDataBase")
 		res.redirect(`/products/detail/${id}`);
 	},
@@ -84,8 +95,27 @@ const productsController = {
 	destroy: (req, res) => {
 		let products = leerArchivo("productsDataBase");
 		const {id} = req.params;
+		const product = products.find(element => element.id == id)
+		console.log("Esto es product: ",product);
 		const newProducts = products.filter(product => product.id != id);
-		escribirArchivo(newProducts,"productsDataBase")
+		const json = JSON.stringify(newProducts);
+		console.log("Esto es json: ",json);
+		console.log("Esto es image: ",product.image);
+		if (typeof product.image == "string"){
+			fs.unlink(path.join(__dirname,`../../public/images/products/${product.image}`), (err)=>{
+				if(err) throw err;
+				console.log("Borre el archivo ", product.image);
+			});
+		} else {	
+			product.image.forEach(imagen =>{
+				fs.unlink(path.join(__dirname,`../../public/images/products/${imagen}`), (err)=>{
+					if(err) throw err;
+					console.log("Borre el archivo ", product.image);
+				});
+			})
+		}
+		
+		escribirArchivo(newProducts,"productsDataBase");
 		res.redirect("/products");
 	}
 };

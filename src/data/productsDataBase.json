@@ -120,8 +120,8 @@
     "id": "14",
     "name": "Sony S6700 Reproductor De Blu-ray",
     "description": "Disfruta de tus películas favoritas con hasta cuatro veces más detalles que Full HD, gracias a la conversión de señales 4K. Cuando se conecta a un televisor compatible,un procesador de video avanzado convierte el video estándar en una señal cercana a la resolución 4K (3840 x 2160). Con ocho millones de píxeles, obtendrás imágenes más nítidas y detalladas, y la mayor calidad de la image te permite sentarte más cerca de la pantalla para que te sientas como en el cine.",
-    "price": 10000,
-    "discount": "10",
+    "price": 20000,
+    "discount": 10,
     "image": "img-sony-blueray.jpg",
     "category": "visited"
   },
@@ -135,57 +135,39 @@
     "category": "visited"
   },
   {
-    "id": 16,
+    "id": "16",
     "name": "Sony Srs-xb12 Parlante Bluetooth Portátil",
+    "description": "Deja que la música dance cobre vida con EXTRA BASS™ Anima el ambiente con EXTRA BASS™1. Un radiador pasivo trabaja con el parlante monoaural para potenciar los tonos bajos y mejorar los graves, a pesar del tamaño compacto.",
     "price": 4699,
     "discount": 5,
-    "category": "in-sale",
-    "description": "Deja que la música dance cobre vida con EXTRA BASS™ Anima el ambiente con EXTRA BASS™1. Un radiador pasivo trabaja con el parlante monoaural para potenciar los tonos bajos y mejorar los graves, a pesar del tamaño compacto. ",
-    "image": "img-parlante-sony.jpg"
-  },
-  {
-    "id": "07c1a1cb-8dd1-4c43-9880-91af058eaffe",
-    "name": "Macetero",
-    "description": "Probemos este producto",
-    "price": 3750,
-    "discount": 10,
-    "image": "group-1703198357921.jpeg",
+    "image": "img-parlante-sony.jpg",
     "category": "in-sale"
   },
   {
-    "id": "7e05f3e2-e6c2-4706-bbec-35206d2b2e2a",
-    "name": "Zapatillas ADIDAS",
-    "description": "Las mas comodas",
-    "price": 35900,
-    "discount": 10,
-    "image": "default-image.png",
+    "id": "024087e3-addf-4697-9c07-75d94cdc69e0",
+    "name": "Bomba Presurizadora Femmto",
+    "description": "• Potencia del motor: 120W.\r\n• Rosca Entrada/Salida: 3/4\".\r\n• Elevación máxima: 11 metros.\r\n• Presión de trabajo: 1,5 bar\r\n• Caudal máximo: 30 litros por minuto.\r\n• Funcionamiento manual-automático-apagado.\r\n• Largo del cable: 110 cm\r\n• Tratamiento cerámico anti-corrosivo mayor vida útil de la bomba.\r\n• Peso: 2700gr.\r\n• Medidas: 16cm x 17cm x 12cm.\r\n• Alimentación entrada: 220V\r\n• Frecuencia: 50Hz",
+    "price": 88200,
+    "discount": 12,
+    "image": [
+      "1703629303263_bomba-agua-3.webp",
+      "1703629303266_bomba-agua-2.webp",
+      "1703629303268_bomba-agua-1.webp",
+      "1703629303276_bomba-agua.webp"
+    ],
     "category": "visited"
   },
   {
-    "id": "57001a12-ae7b-41e8-be5c-9493d23260f0",
-    "name": "Soporte para macetas",
-    "description": "",
-    "price": 500,
-    "discount": 0,
-    "image": "group-1703190777991.jpg",
+    "id": "6b689690-9755-4ba9-a394-c4939f60896d",
+    "name": "Hidrolavadora Eléctrica Klugan",
+    "description": "La Hidrolavadora eléctrica Klugan HD 105 en color gris es la solución perfecta para mantener tu hogar, jardín y vehículos impecables. Con sus 1400W de potencia y 105 bar de presión máxima, podrás eliminar la suciedad más difícil de manera rápida y eficiente. Gracias a su caudal de agua de 5 litros por minuto, ahorrarás tiempo y recursos en cada limpieza.",
+    "price": 85000,
+    "discount": 12,
+    "image": [
+      "1703629537018_hidrolavadora-2.webp",
+      "1703629537019_hidrolavadora-1.webp",
+      "1703629537020_hidrolavadora.webp"
+    ],
     "category": "in-sale"
-  },
-  {
-    "id": "069f2ec9-975f-47b5-9810-93ccf1a50fa1",
-    "name": "Plantas Hogar para macetas",
-    "description": "",
-    "price": 1000,
-    "discount": 2,
-    "image": "default-image.png",
-    "category": ""
-  },
-  {
-    "id": "0c2cc153-99d0-46fd-b414-d72e93140c2c",
-    "name": "Macetero Vertical",
-    "description": "El mejor de los verticales",
-    "price": 2300,
-    "discount": 10,
-    "image": "group-1703190446138.jpeg",
-    "category": ""
   }
 ]
