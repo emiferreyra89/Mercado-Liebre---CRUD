@@ -43,7 +43,7 @@ const productsController = {
 					description:description.trim(),
 					price:+price,
 					discount:+discount,
-					image: files.length > 1 ? images : ["not-image.jpg"],
+					image: files.length > 0 ? images : ["not-image.jpg"],
 					category
 				};
 		products.push(product);		
