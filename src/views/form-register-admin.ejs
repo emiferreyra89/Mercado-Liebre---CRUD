@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Bienvenido al Registro...!!!'}) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Bienvenido Admin, te estamos esperando...!!!</h2>
+			</div>
+		</div>
+		<div class="col-12">
+			<form action="/users/admin/register" method="POST" enctype="multipart/form-data">
+				<div class="row product-detail">
+					<div class="col-12 col-md-6">
+						<label for="name" class="form-label">Nombre</label>
+						<input type="text" id="name" name="name" value="<%= locals.oldData ? oldData.name : null %>" placeholder="Nombre" class="form-input" <%= locals.errors && errors.name ? 'is-invalid' : null %>> 
+                        <p style="font-size: 14px; font-weight: 400; color: red;"><%= locals.errors && errors.name ? errors.name.msg : null %></p>
+					</div>
+					<div class="col-12 col-md-6">
+						<label for="surname" class="form-label">Apellido</label>
+						<input type="text" id="surname" name="surname" value="<%= locals.oldData ? oldData.surname : null %>" placeholder="Apellido" class="form-input">
+                        <p style="font-size: 14px; font-weight: 400; color: red;"><%= locals.errors && errors.surname ? errors.surname.msg : null %></p>
+                    </div>
+					<div class="col-12 col-md-6">
+						<label for="numberFile" class="form-label">Legajo:</label>
+						<input type="text" id="numberFile" name="numberFile" value="<%= locals.oldData ? oldData.numberFile : null %>" placeholder="Ej: 1234" class="form-input">
+                        <p style="font-size: 14px; font-weight: 400; color: red;"><%= locals.errors && errors.numberFile ? errors.numberFile.msg : null %></p>
+                    </div>
+					<div class="col-12 col-md-6">
+						<label for="category" class="form-label">Categoría:</label>
+						<select name="category" id="category" class="form-input">
+							<option value="">Elegir</option>
+							<option value="Junior" <%= locals.oldData && (oldData.category == "Junior") ? "selected" : null;%> >Junior</option>
+							<option value="Semi-senior" <%= locals.oldData && (oldData.category == "Semi-senior") ? "selected" : null;%> >Semi-senior</option>
+                            <option value="Senior" <%= locals.oldData && (oldData.category == "Senior") ? "selected" : null;%> >Senior</option>
+							<option value="Owner" <%= locals.oldData && (oldData.category == "Owner") ? "selected" : null;%> >Owner</option>
+						</select>
+                        <p style="font-size: 14px; font-weight: 400; color: red;"><%= locals.errors && errors.category ? errors.category.msg : null %></p>
+					</div>
+					<div class="col-12 col-md-6">
+						<label for="imageAdmin" class="form-label">Imagen</label>
+						<input type="file" id="imageAdmin" name="imageAdmin" class="form-input form-input-file" multiple>
+					</div>
+                    <div class="col-12 col-md-6">
+						<label for="email" class="form-label">E-mail</label>
+						<input type="email" id="email" name="email" value="<%= locals.oldData ? oldData.email : null %>" placeholder="Por ej: xxx@ddd.com" class="form-input">
+                        <p style="font-size: 14px; font-weight: 400; color: red;"><%= locals.errors && errors.email ? errors.email.msg : null %></p>
+                    </div>
+                    <div class="col-12 col-md-6">
+						<label for="contrasenia" class="form-label">CONTRASEÑA</label>
+						<input type="password" id="contrasenia" name="contrasenia" placeholder="CONTRASEÑA" class="form-input">
+                        <p style="font-size: 14px; font-weight: 400; color: red;"><%= locals.errors && errors.contrasenia ? errors.contrasenia.msg : null %></p>
+					</div>
+                    <div class="col-12 col-md-6">
+						<label for="contrasenia" class="form-label">Confirme CONTRASEÑA</label>
+						<input type="password" id="contrasenia" name="contrasenia" placeholder="Confirme CONTRASEÑA" class="form-input">
+                        <p style="font-size: 14px; font-weight: 400; color: red;"><%= locals.errors && errors.contrasenia ? errors.contrasenia.msg : null %></p>
+					</div>
+					<div class="col-12">
+						<button type="submit" class="buy-now-button">Registrarse</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+	<!-- /todos los productos -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>
