@@ -14,6 +14,17 @@ const storage = multer.diskStorage({
     }
 });
 
+
+// const fileFilter = (req, file, next) => {
+//     let extensionFile = path.extname(file.originalname);
+//     let validExtensions = ['.jpg','.jpeg','.png','.gif'];
+//     if (validExtensions.includes(extensionFile)) {
+//         next(null, true);
+//     } else {
+//         next()
+//     }
+// }
+
 const uploadFile = multer({storage}); 
 
 const validationsAdmin = [
@@ -27,7 +38,7 @@ const validationsAdmin = [
         .notEmpty().withMessage('Por favor ingrese su EMAIL').bail()
         .isEmail().withMessage('Por favor, ingrese un EMAIL valido. Por ej: aaa@ddd.com'),
     body('contrasenia')
-        .notEmpty().withMessage('Por favor ingrese una CONTRASEÑA de 8 digitos').bail()
+        .notEmpty().withMessage('Por favor ingrese una CONTRASEÑA de 4 digitos').bail()
         .isStrongPassword({ 
             minLength: 4, 
             minLowercase: 1, 
@@ -41,8 +52,20 @@ const validationsAdmin = [
             pointsForContainingUpper: 10, 
             pointsForContainingNumber: 10, 
             pointsForContainingSymbol: 10 })
-        .withMessage('La CONTRASEÑA debe contener al menos 4 caracteres, entre ellos un numero y un simbolo')
-]
+        .withMessage('La CONTRASEÑA debe contener al menos 4 caracteres, entre ellos un numero, un simbolo y una mayuscula'),
+    body('imageAdmin').custom((value, {req}) => {
+        let file = req.file
+        let validExtensions = ['.jpg','.jpeg','.png','.gif'];
+        if (file){
+            // throw new Error ('Los formatos permitidos son JPG, JPEG, PNG y GIF')
+            let extensionFile = path.extname(file.originalname);
+            if (!validExtensions.includes(extensionFile)) {
+                throw new Error ('Los formatos permitidos son JPG, JPEG, PNG y GIF')
+            }
+        }
+        return true;
+    })
+];
 
 const userController = require('../controllers/usersController')
 
