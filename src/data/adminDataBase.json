@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Emiliano",
+    "surname": "Ferreyra",
+    "numberFile": 1234,
+    "category": "Junior",
+    "imageAdmin": "1704758301303_img_macetero.jpeg",
+    "email": "ferreyra89@gmail.com",
+    "contrasenia": ["Sal-123", "Sal-123"]
+  }
+]
