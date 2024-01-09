@@ -2,6 +2,7 @@ const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 const {validationResult} = require('express-validator')
+const {leerArchivo,escribirArchivo} = require('../data/dataFunctions');
 
 const userController = {
     formRegisterUser:(req,res)=>{
@@ -21,8 +22,24 @@ const userController = {
                 errors: resultValidation.mapped(),
                 oldData: req.body
             })
+        } else {
+        const file = req.file;
+        console.log('Esto es FILEEEEE: ',file);
+		let adminUsers = leerArchivo("adminDataBase");
+		const {name,surname,numberFile,category,imageAdmin,email,contrasenia} = req.body;
+		const admin =  {
+					name:name.trim(),
+					surname:surname.trim(),
+					numberFile:+numberFile,
+					category:category,
+                    imageAdmin: file ? file.filename : "no-user-img.jpg",
+					email:email.trim(),
+                    contrasenia:contrasenia
+				};
+		adminUsers.push(admin);		
+		escribirArchivo(adminUsers,"adminDataBase")
         }
-         return res.send("Por fin te registraste...")
+         return res.send('admin registrado')
         // res.redirect('/user/admin/login');
     },
     formLoginUser:(req,res)=>{
