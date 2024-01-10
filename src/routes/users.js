@@ -57,7 +57,6 @@ const validationsAdmin = [
         let file = req.file
         let validExtensions = ['.jpg','.jpeg','.png','.gif'];
         if (file){
-            // throw new Error ('Los formatos permitidos son JPG, JPEG, PNG y GIF')
             let extensionFile = path.extname(file.originalname);
             if (!validExtensions.includes(extensionFile)) {
                 throw new Error ('Los formatos permitidos son JPG, JPEG, PNG y GIF')
@@ -74,6 +73,7 @@ router.get('/register', userController.formRegisterUser);
 router.get('/admin/register', userController.formAdminRegister);
 router.post('/register', userController.userRegister);
 router.post('/admin/register', uploadFile.single('imageAdmin'), validationsAdmin, userController.adminRegister);
+
 router.get('/login', userController.formLoginUser);
 router.get('/admin/login', userController.formAdminLogin);
 

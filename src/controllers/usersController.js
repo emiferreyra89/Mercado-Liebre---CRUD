@@ -5,16 +5,22 @@ const {validationResult} = require('express-validator')
 const {leerArchivo,escribirArchivo} = require('../data/dataFunctions');
 
 const userController = {
+    //Aca se va a mostrar el formulario de registro para los usuarios
     formRegisterUser:(req,res)=>{
         res.render('form-register-user');
     },
+
+    //Aca se va a mostrar el formulario de registro para los administradores
     formAdminRegister:(req,res)=>{
-        // res.send('Aca se van a registrar los Administradores con permisos')
         res.render('form-register-admin');
     },
+
+    //Aca se va a procesar el formulario de registro para los usuarios
     userRegister:(req,res)=>{
         res.redirect('/user/login');
     },
+
+    //Aca se va a procesar el formulario de registro para los administradores
     adminRegister:(req,res)=>{
         const resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0){
@@ -24,7 +30,6 @@ const userController = {
             })
         } else {
         const file = req.file;
-        console.log('Esto es FILEEEEE: ',file);
 		let adminUsers = leerArchivo("adminDataBase");
 		const {name,surname,numberFile,category,imageAdmin,email,contrasenia} = req.body;
 		const admin =  {
@@ -39,15 +44,18 @@ const userController = {
 		adminUsers.push(admin);		
 		escribirArchivo(adminUsers,"adminDataBase")
         }
-         return res.send('admin registrado')
-        // res.redirect('/user/admin/login');
+        
+        res.redirect('/users/admin/login');
     },
+
+    //Aca se va a mostrar el formulario de logueo para los usuarios
     formLoginUser:(req,res)=>{
-        res.render('form-login-user');
+        //res.render('form-login-user');
     },
+
+    //Aca se va a mostrar el formulario de logueo para los administradores
     formAdminLogin:(req,res)=>{
-        res.send('Aca se van a loguear los Administradores con permisos')
-        // res.render('form-login-admin');
+       res.render('form-login-admin');
     }
 }
 
